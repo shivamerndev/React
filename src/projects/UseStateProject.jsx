@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import '../projects/p1.css'
-// import '../projects/p1.module.css'
+// import '../projects/p1.css'
 
 const UseStateProject = () => {
 

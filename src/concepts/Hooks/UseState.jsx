@@ -7,7 +7,7 @@ const UseState = () => {
   // let count = 0;
 
   let setKaroObj = ()=>{
-    obj.name = 'rahul'
+    // obj.name = 'rahul'
     // setObj(obj) 
     setObj(prev=>({...prev,name:'rahul'}))
   }
