@@ -35,7 +35,7 @@ const UseState = () => {
       <div>
         <details>
           <summary>Change Refrence</summary>
-          <p>multiple useState runs only one time with the help of batching.</p>
+          <p>You can't change dom directly</p>
         </details>
         <h1>obj = {obj.name}</h1>
 

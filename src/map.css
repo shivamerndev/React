@@ -16,7 +16,7 @@ section {
   background: black;
 }
 h1 {
-  white-space: nowrap;
+  /* white-space: nowrap; */
   font-size: 1.8rem;
 }
 button {
