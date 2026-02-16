@@ -1,28 +1,14 @@
 import { Eye, Heart, ShoppingCart, Star } from 'lucide-react';
 import AnimatedCard from './AnimatedCart';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { ProductContext } from './D4Context';
 
-const Card = ({ product, discount, setLsw,wishlist,setWishlist , setCarts}) => {
+const Card = ({ product, discount, setLsw }) => {
 
+    const { setCarts, setWishlist, wishlist, renderStars } = useContext(ProductContext)
     const { image, title, price, rating, id } = product
     const navigate = useNavigate()
-
-    const renderStars = (rating) => {
-
-        const fullStars = Math.floor(rating);
-        const hasHalfStar = rating % 1 !== 0;
-        const stars = [];
-
-        for (let i = 0; i < fullStars; i++) stars.push(<Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />)
-
-        if (hasHalfStar) stars.push(<Star key="half" className="w-3 h-3 fill-yellow-400/50 text-yellow-400" />)
-
-        const emptyStars = 5 - Math.ceil(rating);
-
-        for (let i = 0; i < emptyStars; i++) stars.push(<Star key={`empty-${i}`} className="w-3 h-3 text-gray-300" />);
-
-        return stars;
-    }
 
     const toggleWishlist = (id) => {
         let lsw = JSON.parse(localStorage.getItem("wish")) || []
@@ -31,7 +17,7 @@ const Card = ({ product, discount, setLsw,wishlist,setWishlist , setCarts}) => {
             localStorage.setItem("wish", JSON.stringify(newElem))
             if (setLsw) {
                 setLsw(newElem)
-            }else{
+            } else {
                 setWishlist(newElem)
             }
             return;
@@ -41,8 +27,9 @@ const Card = ({ product, discount, setLsw,wishlist,setWishlist , setCarts}) => {
         localStorage.setItem("wish", JSON.stringify(arr))
     }
 
-    return (
-        <div className=" mb-4 group bg-white cursor-pointer h-120 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden flex flex-col justify-between border border-gray-100">
+
+    return <div className=" mb-4 group bg-white cursor-pointer h-120 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden flex flex-col justify-between border border-gray-100">
+           
             {/* Image Container */}
             < div className="relative h-2/3  overflow-hidden" >
                 <img className="h-full w-full  object-contain object-center group-hover:scale-110 transition-transform duration-300"
@@ -56,12 +43,12 @@ const Card = ({ product, discount, setLsw,wishlist,setWishlist , setCarts}) => {
 
                 {/* Wishlist Button */}
                 <button onClick={() => toggleWishlist(product.id)}
-                    className="absolute cursor-pointer top-3 right-3 h-8 w-8 bg-gray-500 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg">
+                    className="absolute cursor-pointer top-3 right-3 h-8 w-8 bg-gray-400/50 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg">
                     <Heart
                         className={`w-4 h-4 transition-colors duration-300
                              ${wishlist.includes(product.id)
                                 ? "fill-rose-400 text-red-400"
-                                : "hover:text-gray-100 text-red-400"
+                                : "hover:text-red-500 text-gray-500"
                             }
                             `} />
                 </button>
@@ -112,7 +99,6 @@ const Card = ({ product, discount, setLsw,wishlist,setWishlist , setCarts}) => {
             </div >
 
         </div >
-    )
 }
 
 export default Card

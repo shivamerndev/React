@@ -8,20 +8,35 @@ import HandleForm from "./concepts/Forms/HandleForm"
 import ReactHookForm from './concepts/day3/ReactHookForm'
 import TodoProject from './projects/day3-Todo-Time/TodoProject'
 import Todo from './concepts/day-4/Todo'
-import Context from './projects/day4-cart/Context'
 import ProductDetail from './projects/day4-cart/ProductDetail'
 import CartPage from './projects/day4-cart/CartPage'
 import Wishlist from './projects/day4-cart/Wishlist'
+import D4Context from './projects/day4-cart/D4Context'
+import ProductPage from './projects/day4-cart/ProductPage'
+import Login from './projects/day5-chat/Login'
 
 const App = () => {
   return <Routes>
     <Route path='/p1' element={<UseStateProject />} />
     <Route path='/p2' element={<FormProject />} />
     <Route path='/p3' element={<TodoProject />} />
-    <Route path='/p4' element={<Context />} />
-    <Route path='/d4/p/:id' element={<ProductDetail />} />
-    <Route path='/d4/cart' element={<CartPage />} />
-    <Route path='/d4/wishlist' element={<Wishlist />} />
+
+    <Route path='/p4' element={<D4Context><ProductPage /> </D4Context>} />
+    <Route path='/d4/p/:id' element={<D4Context><ProductDetail /> </D4Context>} />
+    <Route path='/d4/cart' element={<D4Context><CartPage /> </D4Context>} />
+    <Route path='/d4/wishlist' element={<D4Context><Wishlist /> </D4Context>} />
+
+
+
+    <Route path='/p5' element={<Login />} />
+    {/* <Route path='/d5/p/:id' element={<D4Context><ProductDetail /> </D4Context>} />
+    <Route path='/d5/cart' element={<D4Context><CartPage /> </D4Context>} />
+    <Route path='/d5/wishlist' element={<D4Context><Wishlist /> </D4Context>} /> */}
+
+
+
+
+
     <Route path='/' element={<UseState />} />
     <Route path='/map' element={<MapState />} />
     <Route path='form/bind' element={<FormBinding />} />
