@@ -9,7 +9,7 @@ const Chat = () => {
     const { user, users, setUser, mode, setMode, groups, setGroups } = useContext(userData)
     const [inps, setInps] = useState("")
     const [add, setAdd] = useState(false)
-    const [chats, setChats] = useState([...((user?.groups?.find(g => g.group === mode))?.chats)] || [])
+    const [chats, setChats] = useState([])
     const [notify, setNotify] = useState(chats)
     const [formData, setFormData] = useState({ group: "", description: "", members: [] })
     console.log(chats)
@@ -34,6 +34,11 @@ const Chat = () => {
         if (!user) {
             navigate(-1)
         }
+        if (user.groups) {
+            let obj = user.groups.find(g=>g.group === mode)?.chats || []
+            setChats([...obj])
+        }
+
     }, [user])
 
 

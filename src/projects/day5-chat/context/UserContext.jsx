@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react'
+import { Outlet } from 'react-router-dom'
 
 export const userData = createContext()
 
@@ -17,7 +18,8 @@ const UserContext = ({ children }) => {
 
     return (
         <userData.Provider value={{ users, user, setUser, mode, setMode, groups, setGroups }} >
-            {children}
+            {/* {children} */}
+            <Outlet/>
         </userData.Provider>
     )
 }

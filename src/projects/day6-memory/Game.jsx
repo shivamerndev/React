@@ -4,32 +4,32 @@ import { CardData } from './CardContext'
 const Game = () => {
 
     const { users } = useContext(CardData)
-    const [flip, setFlip] = useState([])
+    const [flip, setFlip] = useState({})
     const [suffle, setSuffle] = useState([])
     const [score, setScore] = useState(0)
     const [matched, setMatched] = useState([])
 
     useEffect(() => {
-alert("Double Click bug fix karna hai.")
         setSuffle(users.sort(() => (Math.random() - 0.5)))
     }, [])
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        if (matched.length === suffle.length / 2) {
-            return;
-        }
+    //     if (matched.length === suffle.length / 2) {
+    //         return;
+    //     }
 
-        if (flip.length > 1) {
-            if (flip[0]?.e === flip[1]?.e) {
-                setScore(prev => prev + 10)
-                setMatched([...matched, flip[0].e])
-            }
-            setTimeout(() => {
-                setFlip([])
-            }, 1000);
-        }
-    }, [flip])
+    //     if (flip.length > 1) {
+    //         if (flip[0]?.e === flip[1]?.e) {
+    //             setScore(prev => prev + 10)
+    //             setMatched([...matched, flip[0].e])
+    //         }
+    //         setTimeout(() => {
+    //             setFlip([])
+    //         }, 1000);
+    //     }
+    // }, [flip])
+    // console.log(flip)
 
     return (
         <div className='flex select-none justify-center flex-col gap-8 items-center h-screen bg-gray-700'>
@@ -50,12 +50,13 @@ alert("Double Click bug fix karna hai.")
                 <div className='grid grid-cols-6 gap-4 my-8   text-base font-semibold'>
 
                     {suffle.map((e, i) => <div key={i} className="card ">
-                        <div className={`card-inner ${flip.some(f => f.i === i) || matched.includes(e) ? 'rotate-y-180' : ''}`}
+                        <div className={`card-inner ${true ? 'rotate-y-180' : ''}`}
                             onClick={() => {
-                                if (flip.length > 1) {
-                                    return;
+                                if (true) {
+                                    console.log(flip[i])
+                                    setFlip({})
                                 } else {
-                                    setFlip([...flip, { e, i }])
+                                    setFlip({ ...flip, [i]: e })
                                 }
                             }}>
                             <div className="card-front"></div>

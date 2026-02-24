@@ -1,6 +1,7 @@
 import { createContext, useState } from 'react'
 import axios from 'axios'
 import { Star } from 'lucide-react'
+import { Outlet } from 'react-router-dom'
 
 export const ProductContext = createContext()
 
@@ -56,7 +57,8 @@ const D4Context = ({ children }) => {
 
     return (
         <ProductContext.Provider value={{ addCart, getProducts, setProducts, renderStars, products, lsp, categories, carts, setCarts, wishlist, setWishlist }}>
-            {children}
+            {/* {children} */}
+            <Outlet/>
         </ProductContext.Provider>
     )
 }
